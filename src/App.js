@@ -1,40 +1,30 @@
 import React from 'react';
+import './App.scss';
+
+import Home from './components/Home/Home';
+import Header from './components/Header/Header';
+import Resources from './components/Resources/Resources';
+import Users from './components/Users/Users';
+import Logination from './components/Logination/Logination';
+
+import {ButtonToolbar, Button, Images, Nav} from 'react-bootstrap';
 import {BrowserRouter, Route, Link} from 'react-router-dom';
 
-const Home = () => (
-    <div>
-      <h2>Home</h2>
-    </div>
-);
-
-const About = () => (
-    <div>
-        <h2>About</h2>
-    </div>
-);
-const Contacts= () => (
-    <div>
-        <h2>Contacts</h2>
-    </div>
-);
 
 class Navigation extends  React.Component {
   render() {
     return (
-        <BrowserRouter>
-          <div>
-              <ul>
-                  <li><Link to='/'>Home</Link></li>
-                  <li><Link to="/about">About</Link></li>
-                  <li><Link to='/contacts'>Contacts</Link></li>
-              </ul>
-              <hr/>
-
-              <Route exact path='/' component={Home}/>
-              <Route path='/about' component={About}/>
-              <Route path='/contacts' component={Contacts}/>
-          </div>
-        </BrowserRouter>
+        <div>
+          <BrowserRouter>
+            <Header />
+            <main>
+                <Route exact path='/' component={Home}/>
+                <Route path='/resources' component={Resources}/>
+                <Route path='/users' component={Users}/>
+                <Route path='/login' component={Logination}/>
+            </main>
+          </BrowserRouter>
+        </div>
     )
   }
 }
