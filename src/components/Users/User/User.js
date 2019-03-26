@@ -1,11 +1,12 @@
 import React from 'react';
+import getUsers from '../Service/serviceUsers';
 
-const User = () => {
+const User = ({match}) => {
     return (
-      <div>
-        user
-      </div>
+        <div>
+            <h3>{match.params.topicId}</h3>
+        </div>
     );
 
-}
+};
 export default User;

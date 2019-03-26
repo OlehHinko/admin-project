@@ -1,26 +1,30 @@
 import React from 'react';
 import './Users.scss';
-import User from'./User/User';
-import {Card,Button} from 'react-bootstrap';
+import User from './User/User';
+import {Card, Button} from 'react-bootstrap';
+import {Route} from "react-router";
+import {Link} from "react-router-dom";
+import getUsers from './Service/serviceUsers';
 
-const Users = (props) => {
 
-  return (
-    <div className="users">
-        <User />
-        <Card style={{ width: '18rem' }}>
-            <Card.Img variant="top" src="/src/images/user/images.jpg" />
-            <Card.Body>
-              <Card.Title>Card Title</Card.Title>
-              <Card.Text>
-                Some quick example text to build on the card title and make up the bulk of
-                the cards content.
-              </Card.Text>
-              <Button variant="primary">Go somewhere</Button>
-            </Card.Body>
-          </Card>
-    </div>
-  );
-}
+class Users extends React.Component {
+    render () {
+        const users = getUsers();
+        return (
+            <div className="users">
+                <h2>Users</h2>
+                <ul>
+                    {users && users.map((user, key) => {
+                        return (
+                            <li key={key}>
+                                <Link to={`user/${user.id}`}>{user.name}</Link>
+                            </li>
+                        )
+                    })}
+                </ul>
+            </div>
+        );
+    }
+};
 
 export default Users;

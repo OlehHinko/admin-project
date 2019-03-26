@@ -1,6 +1,6 @@
 import React from 'react';
 import './Header.scss';
-import {ButtonToolbar, Button, Images, Nav} from 'react-bootstrap';
+import {Nav} from 'react-bootstrap';
 import  {Link} from 'react-router-dom';
 const Header = (props) => {
   return (
@@ -27,6 +27,6 @@ const Header = (props) => {
     </header>
 
   );
-}
+};
 
 export default Header;
