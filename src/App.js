@@ -6,10 +6,11 @@ import Header from './components/Header/Header';
 import Resources from './components/Resources/Resources';
 import Users from './components/Users/Users';
 import Logination from './components/Logination/Logination';
-import User from "./components/Users/User/User";
 
 import {ButtonToolbar, Button, Images, Nav} from 'react-bootstrap';
 import {BrowserRouter, Route, Link} from 'react-router-dom';
+import User from "./components/Users/User/User";
+import {Switch} from "react-router";
 
 
 
@@ -20,11 +21,13 @@ class Navigation extends  React.Component {
           <BrowserRouter>
             <Header />
             <main>
-                <Route exact path='/' component={Home}/>
-                <Route path='/resources' component={Resources}/>
-                <Route path='/users' component={Users}/>
-                <Route path='/user/:topicId' component={User}/>
-                <Route path='/login' component={Logination}/>
+                <Switch>
+                    <Route exact path='/' component={Home}/>
+                    <Route path='/resources' component={Resources}/>
+                    <Route path='/users' component={Users}/>
+                    <Route path='/user/:id' component={User}/>
+                    <Route path='/login' component={Logination}/>
+                </Switch>
             </main>
           </BrowserRouter>
         </div>

@@ -3,6 +3,11 @@ import './Logination.scss';
 import {Form, Button} from 'react-bootstrap';
 
 const Logination = () => {
+
+    let setLocalStorage = () => {
+        localStorage.setItem('1','true');
+    };
+
   return (
       <Form>
         <Form.Group controlId="formBasicEmail">
@@ -19,11 +24,11 @@ const Logination = () => {
         <Form.Group controlId="formBasicChecbox">
           <Form.Check type="checkbox" label="Check me out" />
         </Form.Group>
-        <Button variant="primary" type="submit">
+        <Button variant="primary" type="submit" onClick={setLocalStorage}>
           Submit
         </Button>
       </Form>
   );
-}
+};
 
 export default Logination;

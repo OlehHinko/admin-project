@@ -25,6 +25,6 @@ class Users extends React.Component {
             </div>
         );
     }
-};
+}
 
 export default Users;
