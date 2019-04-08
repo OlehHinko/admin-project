@@ -1,8 +1,6 @@
 import React from 'react';
 import './Users.scss';
-import User from './User/User';
 import {Card, Button} from 'react-bootstrap';
-import {Route} from "react-router";
 import {Link} from "react-router-dom";
 import getUsers from './Service/serviceUsers';
 

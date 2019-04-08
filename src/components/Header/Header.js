@@ -8,9 +8,6 @@ const Header = () => {
     let removeLocalStorage = () =>{
         localStorage.clear();
         localStorage.setItem('0', 'false');
-       /* if (localStorage.getItem('0')){
-            <Redirect to="/login"/>
-        }*/
     };
     return (
         <header className="header">
@@ -24,11 +21,8 @@ const Header = () => {
                 <Nav.Item>
                     <Nav.Link><Link to='/users'>Users</Link></Nav.Link>
                 </Nav.Item>
-                <Nav.Item>
-                    <Nav.Link><Link to='/login'>Login</Link></Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                    <Nav.Link eventKey="disabled" onClick={removeLocalStorage}>
+                <Nav.Item className="log-out">
+                    <Nav.Link  eventKey="disabled" onClick={removeLocalStorage}>
                         Log out
                     </Nav.Link>
                 </Nav.Item>

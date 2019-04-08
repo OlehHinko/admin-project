@@ -1,9 +1,15 @@
 .header {
   padding: 10px;
   background-color: blue;
+  .nav {
+    justify-content: flex-end;
+  }
   .nav-item {
     a {
       color: #ffffff;
+    }
+    &.log-out {
+      float: right;
     }
   }
 }
