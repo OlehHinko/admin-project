@@ -2,29 +2,27 @@ import React from 'react';
 import './Header.scss';
 import {Nav} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
-import {Redirect} from "react-router";
 
 const Header = () => {
-    let removeLocalStorage = () =>{
-        localStorage.clear();
-        localStorage.setItem('0', 'false');
+    const removeLocalStorage = () =>{
+        localStorage.removeItem('isLogined');
     };
     return (
         <header className="header">
             <Nav>
                 <Nav.Item>
-                    <Nav.Link><Link to='/'>Home</Link></Nav.Link>
+                    <Link to='/'>Home</Link>
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link><Link to="/resources">Resources</Link></Nav.Link>
+                    <Link to="/resources">Resources</Link>
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link><Link to='/users'>Users</Link></Nav.Link>
+                    <Link to='/users'>Users</Link>
                 </Nav.Item>
                 <Nav.Item className="log-out">
-                    <Nav.Link  eventKey="disabled" onClick={removeLocalStorage}>
+                    <button  onClick={removeLocalStorage}>
                         Log out
-                    </Nav.Link>
+                    </button>
                 </Nav.Item>
             </Nav>
         </header>

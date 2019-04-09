@@ -1,9 +1,7 @@
 import React from 'react';
 import './Users.scss';
-import {Card, Button} from 'react-bootstrap';
 import {Link} from "react-router-dom";
 import getUsers from './Service/serviceUsers';
-
 
 class Users extends React.Component {
     render () {
@@ -12,13 +10,12 @@ class Users extends React.Component {
             <div className="users">
                 <h2>Users</h2>
                 <ul>
-                    {users && users.map((user, key) => {
-                        return (
+                    {users && users.map((user, key) => (
                             <li key={key}>
                                 <Link to={`user/${user.id}`}>{user.name}</Link>
                             </li>
                         )
-                    })}
+                    )}
                 </ul>
             </div>
         );
