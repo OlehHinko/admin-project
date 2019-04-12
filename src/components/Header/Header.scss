@@ -1,15 +1,23 @@
 .header {
-  padding: 10px;
+  padding: 20px 30px 20px 100px;
   background-color: blue;
   .nav {
     justify-content: flex-end;
   }
   .nav-item {
+    width: 10%;
     a {
       color: #ffffff;
     }
     &.log-out {
-      float: right;
+      text-align: right;
+      width: 70%;
+      button {
+        background: none;
+        color: white;
+        outline: none;
+        border: none;
+      }
     }
   }
 }

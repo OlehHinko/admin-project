@@ -1,5 +1,9 @@
 import React from 'react';
 import getUsers from './../Service/serviceUsers';
+import './User.scss';
+import Form from "react-bootstrap/Form";
+import Table from "react-bootstrap/Table";
+import Button from "react-bootstrap/Button";
 
 class User extends React.Component {
     constructor(props) {
@@ -20,30 +24,58 @@ class User extends React.Component {
         });
     };
 
-    asdasd1() {
-        const {editedUser} = this.state;
-        return <div>Edit</div>
+    editUsers() {
+        const {editedUser, user} = this.state;
+        return (
+            <Form>
+                <Form.Group controlId="formBasicName">
+                    <Form.Control type="name" value={editedUser.name}/>
+                </Form.Group>
+                <Form.Group controlId="formBasicSurname">
+                    <Form.Control type="surname" value={editedUser.surname}/>
+                </Form.Group>
+                <Form.Group controlId="formBasicEmail">
+                    <Form.Control type="email" value={editedUser.email}/>
+                </Form.Group>
+                <Button variant="primary" type="submit" onClick={() => this.editUser(user)}>
+                    Edit
+                </Button>
+            </Form>
+        )
     }
 
-    asdasd2() {
+    userData() {
         const {user} = this.state;
-        return <p>{user.id} {user.name}</p>
+        return (
+            <div>
+                <Table striped bordered hover variant="dark">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Surname</th>
+                        <th>Email</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>{user.id}</td>
+                        <td>{user.name}</td>
+                        <td>{user.surname}</td>
+                        <td>{user.email}</td>
+                    </tr>
+                    </tbody>
+                </Table>
+                <Button variant="primary" type="submit" onClick={() => this.editUser(user)}>Edit</Button>
+            </div>
+        )
     }
 
     render() {
-        /*const users = getUsers();
-        const UserId = +this.props.match.params.id;
-        let user = users.find((user) => {
-            return user.id === UserId;
-        });*/
-
-        const {user, edit} = this.state;
+        const {edit} = this.state;
         return (
             <div>
-                {edit ? this.asdasd1() : this.asdasd2()}
-                <div>
-                    <button onClick={() => this.editUser(user)}>Edit</button>
-                </div>
+                {edit ? this.editUsers() : this.userData()}
             </div>
         );
     }

@@ -1,15 +1,17 @@
 import React from 'react';
 import './Logination.scss';
 import {Form, Button} from 'react-bootstrap';
+import { Redirect} from 'react-router-dom';
 
 class Login extends React.Component {
-
     setLocalStorage = () => {
-        console.log(1);
         localStorage.setItem('isLogined', 'true');
     };
 
     render() {
+        if (localStorage.getItem('isLogined')) {
+            return <Redirect to={{pathname: "/"}}/>
+        }
         return (
             <Form>
                 <Form.Group controlId="formBasicEmail">

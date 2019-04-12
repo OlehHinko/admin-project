@@ -10,13 +10,14 @@ import Login from './components/Logination/Logination';
 import {BrowserRouter, Route, Redirect} from 'react-router-dom';
 import User from "./components/Users/User/User";
 import {Switch} from "react-router";
+import history from './components/History/history'
 
 class Navigation extends React.Component {
     render() {
         return (
             <div>
-                <BrowserRouter>
-                    <Header/>
+                <BrowserRouter history={history}>
+                    <Header />
                     <main>
                         <Switch>
                             <Route path='/login' component={Login}/>

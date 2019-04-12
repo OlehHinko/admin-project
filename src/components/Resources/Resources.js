@@ -1,11 +1,11 @@
 import React from 'react';
 import './Resources.scss';
 import {ListGroup} from 'react-bootstrap';
-import {Link} from "react-router-dom";
 
-const Resources = (props) => {
+const Resources = () => {
     return (
         <div className="resources">
+            <h2>Resources</h2>
             <ListGroup as="ul">
                 <ListGroup.Item as="li">
                     <a href='https://github.com/mui-org/material-ui' target="_blank">Material UI</a>
