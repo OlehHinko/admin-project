@@ -5,22 +5,21 @@ import Home from './components/Home/Home';
 import Header from './components/Header/Header';
 import Resources from './components/Resources/Resources';
 import Users from './components/Users/Users';
-import Login from './components/Logination/Logination';
+import Signin from './components/Signin/Signin';
 
 import {BrowserRouter, Route, Redirect} from 'react-router-dom';
 import User from "./components/Users/User/User";
 import {Switch} from "react-router";
-import history from './components/History/history'
 
 class Navigation extends React.Component {
     render() {
         return (
             <div>
-                <BrowserRouter history={history}>
+                <BrowserRouter>
                     <Header />
                     <main>
                         <Switch>
-                            <Route path='/login' component={Login}/>
+                            <Route path='/login' component={Signin}/>
                             <PrivateRoute path='/resources' component={Resources}/>
                             <PrivateRoute path='/users' component={Users}/>
                             <PrivateRoute path='/user/:id' component={User}/>

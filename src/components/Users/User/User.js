@@ -38,7 +38,7 @@ class User extends React.Component {
                     <Form.Control type="email" value={editedUser.email}/>
                 </Form.Group>
                 <Button variant="primary" type="submit" onClick={() => this.editUser(user)}>
-                    Edit
+                    Save
                 </Button>
             </Form>
         )
@@ -66,7 +66,7 @@ class User extends React.Component {
                     </tr>
                     </tbody>
                 </Table>
-                <Button variant="primary" type="submit" onClick={() => this.editUser(user)}>Edit</Button>
+                <Button variant="primary" type="submit"  className='user-btn-edit' onClick={() => this.editUser(user)}>Edit</Button>
             </div>
         )
     }
