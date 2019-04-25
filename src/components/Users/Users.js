@@ -13,7 +13,7 @@ class Users extends React.Component {
                 <ListGroup as="ul" >
                     {users && users.map((user, key) => (
                             <ListGroup.Item as="li" key={key}>
-                                <Link to={`user/${user.id}`}>{user.name}</Link>
+                                <Link to={`user/${user.id}`}>{user.name} {user.surname}</Link>
                             </ListGroup.Item>
                         )
                     )}

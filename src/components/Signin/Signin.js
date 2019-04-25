@@ -11,12 +11,14 @@ class Signin extends React.Component {
             email: '',
             password: '',
             emailError: '',
-            passwordError: ''
+            passwordError: '',
+            submitBtn: true
         };
         this.handslerChangeField = this.handslerChangeField.bind(this);
     }
 
     handslerChangeField(e) {
+        this.setState({ submitBtn: false});
         const { name, value } = e.target;
         this.setState({ [ name ]: value });
     }
@@ -69,6 +71,7 @@ class Signin extends React.Component {
     render() {
         const {emailError} = this.state;
         const {passwordError} = this.state;
+        const {submitBtn} = this.state;
         const classNames = require('classnames');
         return (
             <Form onSubmit={(e) => this.onSignIn(e)}>
@@ -83,14 +86,19 @@ class Signin extends React.Component {
                 </Form.Group>
                 <Form.Group controlId="formBasicPassword">
                     <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" className={classNames({'error' : passwordError})}
+                    <Form.Control type="password"
+                                  className={classNames({'error' : passwordError})}
                                   onChange={this.handslerChangeField}
                                   value={this.state.password}
                                   placeholder="Password"
                                   name='password'/>
                     {passwordError && <div className='error-massage'>{passwordError}</div>}
                 </Form.Group>
-                <Button variant="primary" className='btn-submit' type="submit">
+                <Button variant="primary"
+                        className='btn-submit'
+                        type="submit"
+                        disabled={submitBtn}
+                        >
                     Submit
                 </Button>
             </Form>

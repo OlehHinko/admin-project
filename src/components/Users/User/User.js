@@ -1,9 +1,11 @@
 import React from 'react';
 import getUsers from './../Service/serviceUsers';
+import {saveUserData} from './../Service/serviceUsers';
 import './User.scss';
 import Form from "react-bootstrap/Form";
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
+import {Prompt} from "react-router";
 
 class User extends React.Component {
     constructor(props) {
@@ -11,10 +13,13 @@ class User extends React.Component {
         this.state = {
             edit: false,
             user: getUsers().find((user) => {
-                return user.id === +this.props.match.params.id;
+                return user.id === +this.props.match.params.id
             }),
-            editedUser: {}
+            editedUser: {},
+            isBlocking: false,
+            isLoading: false
         };
+        this.handslerChangeField = this.handslerChangeField.bind(this);
     }
 
     editUser = (user) => {
@@ -23,22 +28,54 @@ class User extends React.Component {
             editedUser: user
         });
     };
+    saveData = (e) => {
+        e.preventDefault();
+        this.setState({isBlocking: false, isLoading: true});
+        setTimeout(
+            function() {
+                saveUserData(this.state.editedUser);
+                this.setState({ isLoading: false});
+            }
+            .bind(this),
+            2000
+        );
+    };
+
+    handslerChangeField(e) {
+        const {name, value} = e.target;
+        const { editedUser } = this.state;
+
+        const newUser = {
+            ...editedUser,
+            [name]: value
+        };
+        this.setState({editedUser: newUser, isBlocking: true});
+    }
 
     editUsers() {
-        const {editedUser, user} = this.state;
+        const { isLoading } = this.state;
         return (
             <Form>
                 <Form.Group controlId="formBasicName">
-                    <Form.Control type="name" value={editedUser.name}/>
+                    <Form.Control type="text" name='name'
+                                  onChange={this.handslerChangeField}
+                                  value={this.state.editedUser.name}/>
                 </Form.Group>
                 <Form.Group controlId="formBasicSurname">
-                    <Form.Control type="surname" value={editedUser.surname}/>
+                    <Form.Control type="text" name="surname"
+                                  onChange={this.handslerChangeField}
+                                  value={this.state.editedUser.surname}/>
                 </Form.Group>
                 <Form.Group controlId="formBasicEmail">
-                    <Form.Control type="email" value={editedUser.email}/>
+                    <Form.Control type="email" name="email"
+                                  onChange={this.handslerChangeField}
+                                  value={this.state.editedUser.email}/>
                 </Form.Group>
-                <Button variant="primary" type="submit" onClick={() => this.editUser(user)}>
-                    Save
+                <Button variant="primary"
+                        type="submit"
+                        disabled={isLoading}
+                        onClick={(e) => this.saveData(e)}>
+                        {isLoading ? 'Loading…' : 'Save'}
                 </Button>
             </Form>
         )
@@ -66,15 +103,29 @@ class User extends React.Component {
                     </tr>
                     </tbody>
                 </Table>
-                <Button variant="primary" type="submit"  className='user-btn-edit' onClick={() => this.editUser(user)}>Edit</Button>
+                <Button variant="primary"
+                        type="submit"
+                        className='user-btn-edit'
+                        onClick={() => this.editUser(user)}
+                >
+                    Edit
+                </Button>
             </div>
         )
     }
 
     render() {
         const {edit} = this.state;
+        let { isBlocking } = this.state;
         return (
+
             <div>
+                <Prompt
+                    when={isBlocking}
+                    message={() =>
+                        `You really want to leave this page without saving data`
+                    }
+                />
                 {edit ? this.editUsers() : this.userData()}
             </div>
         );

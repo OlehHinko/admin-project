@@ -18,6 +18,16 @@
         outline: none;
         border: none;
       }
+      &.hideBtn {
+        button{
+          display: none;
+        }
+      }
+      &.shoeBtn {
+        button{
+          display: block;
+        }
+      }
     }
   }
 }

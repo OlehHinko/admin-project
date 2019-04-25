@@ -7,14 +7,22 @@ import {withRouter} from "react-router";
 class Header extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            logOut: true
+        };
     }
 
     removeLocalStorage() {
         this.props.history.push('/login');
         localStorage.removeItem('isLogined');
+        this.setState({
+            logOut: false
+        })
     }
 
+
     render() {
+
         return (
             <header className="header">
                 <Nav>
@@ -27,8 +35,9 @@ class Header extends React.Component {
                     <Nav.Item>
                         <Link to='/users'>Users</Link>
                     </Nav.Item>
-                    <Nav.Item className="log-out">
-                        <button onClick={() => this.removeLocalStorage()}>
+                    <Nav.Item className={this.state.logOut ? 'log-out showBtn' : 'log-out hideBtn'  }>
+                        <button
+                            onClick={() => this.removeLocalStorage()}>
                             Log out
                         </button>
                     </Nav.Item>
